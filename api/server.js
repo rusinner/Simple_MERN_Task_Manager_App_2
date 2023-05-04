@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import TodoRoutes from "./routes/Todo.js";
 
 //initialize dotenv
 dotenv.config();
@@ -12,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 //use all routes from todo routes
-// app.use("/", TodoRoutes);
+app.use("/", TodoRoutes);
 
 //initialize server and connect to mongoDB
 const PORT = process.env.PORT || 6001;
