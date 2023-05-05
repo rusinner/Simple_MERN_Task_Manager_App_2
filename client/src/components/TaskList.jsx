@@ -8,7 +8,8 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 const API_BASE = "http://localhost:5000";
 
 const TaskList = () => {
-  const { todos, popupActive, dispatch } = useAppContext();
+  const { todos, popupCreateActive, popupEditActive, dispatch } =
+    useAppContext();
   const [appear, setAppear] = useState({});
   const [completed, setCompleted] = useState({});
 
@@ -59,8 +60,11 @@ const TaskList = () => {
 
   return (
     <S.TaskContainer>
-      <CreateNew onClick={() => dispatch({ type: "POPUP", payload: true })} />
-      {popupActive && <PopupCreate />}
+      <CreateNew
+        onClick={() => dispatch({ type: "POPUP_CREATE", payload: true })}
+      />
+      {popupCreateActive && <PopupCreate />}
+      {popupEditActive && <PopupEdit />}
       <S.TaskUl>
         {/* map over todo list from DB */}
         {todos.map((todo) => (
@@ -78,8 +82,14 @@ const TaskList = () => {
             <S.ButtonContainer>
               <EditOutlinedIcon
                 sx={{ cursor: "pointer" }}
-                // onClick={handleEditClick}
+                onClick={() =>
+                  dispatch({
+                    type: "POPUP_EDIT",
+                    payload: [{ popupEditActive: true }, { id: todo._id }],
+                  })
+                }
               />
+
               <DeleteOutlineIcon
                 sx={{ cursor: "pointer" }}
                 onClick={() => deleteTodo(todo._id)}

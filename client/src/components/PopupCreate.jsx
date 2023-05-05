@@ -26,7 +26,9 @@ const PopupCreate = () => {
 
   return (
     <S.PopupContainer>
-      <S.ClosePopUp onClick={() => dispatch({ type: "POPUP", payload: false })}>
+      <S.ClosePopUp
+        onClick={() => dispatch({ type: "POPUP_CREATE", payload: false })}
+      >
         X
       </S.ClosePopUp>
       <S.CreateNewForm

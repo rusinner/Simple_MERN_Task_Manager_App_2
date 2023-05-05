@@ -7,6 +7,13 @@ export const getTodos = async () => {
     .catch((err) => console.error("Error: ", err));
   return data;
 };
+//get single todo
+export const getSingleTodo = async (id) => {
+  const data = await fetch(API_BASE + "/todo/" + id)
+    .then((response) => response.json())
+    .catch((err) => console.error("Error: ", err));
+  return data;
+};
 
 //call the complete todo route and make the item be comleted
 export const completeTodo = async (id) => {

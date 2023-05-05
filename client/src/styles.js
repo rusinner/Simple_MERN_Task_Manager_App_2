@@ -156,6 +156,7 @@ export const PopupContainer = styled.div`
   flex-direction: column;
   gap: 3rem;
 `;
+
 export const CreateNewForm = styled.input.attrs({ type: "text" })`
   background: var(--checkBoxBg);
   border: 1px solid var(--background);

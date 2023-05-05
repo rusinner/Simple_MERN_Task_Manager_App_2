@@ -2,8 +2,10 @@ import { createContext, useReducer } from "react";
 
 const initialState = {
   todos: [],
-  popupActive: false,
+  popupCreateActive: false,
+  popupEditActive: false,
   completed: false,
+  id: null,
 };
 
 const AppReducer = (state, action) => {
@@ -16,14 +18,24 @@ const AppReducer = (state, action) => {
       return {
         todos: [action.payload, ...state.todos],
       };
-    case "POPUP":
+    case "POPUP_CREATE":
       return {
         todos: [...state.todos],
-        popupActive: action.payload,
+        popupCreateActive: action.payload,
+      };
+    case "POPUP_EDIT":
+      return {
+        todos: [...state.todos],
+        popupEditActive: action.payload,
+        // id: action.payload.id,
       };
     case "DELETE_TODO":
       return {
         todos: [...state.todos.filter((todo) => todo.id === action.payload.id)],
+      };
+    case "EDIT_TODO":
+      return {
+        editText: action.payload,
       };
 
     default:
