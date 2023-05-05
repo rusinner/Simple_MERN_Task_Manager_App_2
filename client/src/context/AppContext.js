@@ -4,8 +4,8 @@ const initialState = {
   todos: [],
   popupCreateActive: false,
   popupEditActive: false,
-  completed: false,
-  id: null,
+  todoId: null,
+  todoText: "",
 };
 
 const AppReducer = (state, action) => {
@@ -26,8 +26,9 @@ const AppReducer = (state, action) => {
     case "POPUP_EDIT":
       return {
         todos: [...state.todos],
-        popupEditActive: action.payload,
-        // id: action.payload.id,
+        popupEditActive: action.payload[0],
+        todoId: action.payload[1],
+        todoText: action.payload[2],
       };
     case "DELETE_TODO":
       return {
@@ -35,7 +36,8 @@ const AppReducer = (state, action) => {
       };
     case "EDIT_TODO":
       return {
-        editText: action.payload,
+        todos: [...state.todos],
+        popupEditActive: action.payload[0],
       };
 
     default:

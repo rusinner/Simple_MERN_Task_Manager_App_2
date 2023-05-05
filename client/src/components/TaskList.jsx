@@ -85,7 +85,11 @@ const TaskList = () => {
                 onClick={() =>
                   dispatch({
                     type: "POPUP_EDIT",
-                    payload: [{ popupEditActive: true }, { id: todo._id }],
+                    payload: [
+                      { popupEditActive: true },
+                      { id: todo._id },
+                      { todoText: todo.text },
+                    ],
                   })
                 }
               />
